@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #include "object.h"
+#include "raise.h"
 
 Object* va_new(Class* class, va_list* ap)
 {

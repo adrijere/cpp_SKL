@@ -2,7 +2,9 @@
 #include <string.h>
 #include <stdio.h>
 #include "char.h"
+
 #include "new.h"
+#include "raise.h"
 
 typedef struct
 {
@@ -36,7 +38,8 @@ static char const *Char_to_string(Object* self)
   tmp = (CharClass *)self;
   if (tmp->display != NULL)
     free(tmp->display);
-  all = malloc(sizeof(char) * 5);
+  if ((all = malloc(sizeof(char) * 5)) == NULL)
+    raise("Out of memory");
   snprintf(all, 5, "%d", tmp->value);
   tmp->display = all;
   return (all);
