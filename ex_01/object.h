@@ -6,10 +6,10 @@
 typedef void Object;
 
 typedef struct {
-    const size_t __size__;
-    const char* __name__;
-    void (*__init__)(Object* self);
-    void (*__del__)(Object* self);
+  const size_t __size__;
+  const char* __name__;
+  void (*__init__)(Object* self);
+  void (*__del__)(Object* self);
 } Class;
 
 #endif

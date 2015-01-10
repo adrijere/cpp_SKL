@@ -7,6 +7,7 @@ typedef struct
 {
   Class base;
   int x, y, z;
+  char *display;
 } VertexClass;
 
 static void Vertex_ctor(Object* self, va_list *args)
@@ -24,7 +25,10 @@ static void Vertex_ctor(Object* self, va_list *args)
 
 static void Vertex_dtor(Object* self)
 {
-  self = self;
+  VertexClass *tmp;
+
+  tmp = (VertexClass *)self;
+  free(tmp->display);
 }
 
 static char const *Vertex_to_string(Object* self)
@@ -33,14 +37,17 @@ static char const *Vertex_to_string(Object* self)
   char *all;
 
   tmp = (VertexClass *)self;
+  if (tmp->display != NULL)
+    free(tmp->display);
   all = malloc(sizeof(char) * (strlen(tmp-> base.__name__) + 42 ));
   snprintf(all, strlen(tmp-> base.__name__) + 31, "<%s (%d, %d, %d)>", tmp->base.__name__, tmp->x, tmp->y, tmp->z);
+  tmp->display = all;
   return (all);
 }
 
 static VertexClass _description = {
   { sizeof(VertexClass), "Vertex", &Vertex_ctor, &Vertex_dtor, &Vertex_to_string },
-  0, 0, 0
+  0, 0, 0, NULL
 };
 
 Class* Vertex = (Class*) &_description;

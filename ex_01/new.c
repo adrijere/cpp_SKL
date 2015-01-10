@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "point.h"
+#include "object.h"
 
 void *new(Class *class, ...)
 {
