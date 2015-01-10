@@ -19,5 +19,6 @@ void delete(Object *ptr)
 
   tmp = (Class *)ptr;
   tmp->__del__(tmp);
+  free (tmp);
 }
 
