@@ -4,12 +4,15 @@
 #include <stdlib.h>
 
 #include "object.h"
+#include "raise.h"
+
 
 Object* va_new(Class* class, va_list* ap)
 {
   Class *tmp;
 
-  tmp = malloc(class->__size__);
+  if ((tmp = malloc(class->__size__)) == NULL)
+      raise("Out of memory");
   memcpy(tmp, class, class->__size__);
   tmp->__init__(tmp, ap);
   return (tmp);
