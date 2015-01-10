@@ -19,16 +19,11 @@ static void Point_ctor(Object* self, va_list *args)
       tmp->x = va_arg(args, int);
       tmp->y = va_arg(args, int);
     }
-  else
-    {
-      tmp->x = 0;
-      tmp->y = 0;
-    }
 }
 
 static void Point_dtor(Object* self)
 {
-
+  self = self;
 }
 
 static char const *Point_to_string(Object* self)

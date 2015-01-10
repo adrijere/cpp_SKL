@@ -20,17 +20,11 @@ static void Vertex_ctor(Object* self, va_list *args)
       tmp->y = va_arg(args, int);
       tmp->z = va_arg(args, int);
     }
-  else
-    {
-      tmp->x = 0;
-      tmp->y = 0;
-      tmp->z = 0;
-    }
 }
 
 static void Vertex_dtor(Object* self)
 {
-
+  self = self;
 }
 
 static char const *Vertex_to_string(Object* self)
@@ -46,7 +40,7 @@ static char const *Vertex_to_string(Object* self)
 
 static VertexClass _description = {
   { sizeof(VertexClass), "Vertex", &Vertex_ctor, &Vertex_dtor, &Vertex_to_string },
-    0, 0
+  0, 0, 0
 };
 
 Class* Vertex = (Class*) &_description;
