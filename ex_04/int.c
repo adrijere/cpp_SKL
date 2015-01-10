@@ -93,7 +93,10 @@ static Object *Int_div(const Object* self, const Object *other)
   to_return = new(Int);
   tmp = (IntClass *)self;
   tmp2 = (IntClass *)other;
-  to_return->value = tmp->value / tmp2->value;
+  if (tmp2->value != 0)
+    to_return->value = tmp->value / tmp2->value;
+  else
+    to_return->value = 0;
   return (to_return);
 }
 

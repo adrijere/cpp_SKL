@@ -93,9 +93,10 @@ static Object *Float_div(const Object* self, const Object *other)
   to_return = new(Float);
   tmp = (FloatClass *)self;
   tmp2 = (FloatClass *)other;
-  if (tmp2->value == 0)
-    raise("Value is NULL");
-  to_return->value = tmp->value / tmp2->value;
+  if (tmp2->value != 0)
+    to_return->value = tmp->value / tmp2->value;
+  else
+    to_return->value = 0;
   return (to_return);
 }
 

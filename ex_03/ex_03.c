@@ -18,7 +18,7 @@ int main()
            * v4 = NULL;
 
     p3 = add(p1, p2);
-    printf("%s + %s = %s\n", str(p1), str(p2), str(p3));
+      printf("%s + %s = %s\n", str(p1), str(p2), str(p3));
     p4 = sub(p1, p2);
     printf("%s - %s = %s\n", str(p1), str(p2), str(p4));
 
