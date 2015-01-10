@@ -36,7 +36,8 @@ static char const *Float_to_string(Object* self)
   tmp = (FloatClass *)self;
   if (tmp->display != NULL)
     free(tmp->display);
-  all = malloc(sizeof(char) * 18);
+  if ((all = malloc(sizeof(char) * 18)) == NULL)
+    raise("Out of memory");
   snprintf(all, 18, "%.6f", tmp->value);
   tmp->display = all;
   return (all);
@@ -90,6 +91,8 @@ static Object *Float_div(const Object* self, const Object *other)
   to_return = new(Float);
   tmp = (FloatClass *)self;
   tmp2 = (FloatClass *)other;
+  if (tmp2->value == 0)
+    raise("Value is NULL");
   to_return->value = tmp->value / tmp2->value;
   return (to_return);
 }
