@@ -23,7 +23,8 @@ Object *new(Class *class, ...)
   Class *tmp;
   va_list ap;
 
-  tmp = malloc(class->__size__);
+  if ((tmp = malloc(class->__size__)) == NULL)
+    raise("Out of memory");
   memcpy(tmp, class, class->__size__);
   va_start(ap, class);
   tmp->__init__(tmp, &ap);
@@ -39,4 +40,3 @@ void delete(Object *ptr)
   tmp->__del__(tmp);
   free(tmp);
 }
-
